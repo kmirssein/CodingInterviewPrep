@@ -1,0 +1,74 @@
+Problem Description
+
+You are given a list of log entries representing user activity in a system.
+Each log entry is a string in the following format:
+
+"<user_id> <timestamp> <action>"
+
+
+Where:
+
+<user_id> is a string representing the user (e.g., "30")
+
+<timestamp> is a non-negative integer
+
+<action> is either "sign-in" or "sign-out"
+
+A user session begins at a sign-in entry and ends at the next corresponding sign-out entry for the same user.
+
+Your task is to determine which users had short sessions, defined as:
+
+session duration = (sign-out time) – (sign-in time)
+
+
+A session is considered valid if the duration is less than or equal to maximumTime.
+
+Logs may appear out of chronological order, so you must sort them by timestamp before processing.
+
+🔵 Function Signature
+def processEvents(logs: list[str], maximumTime: int) -> list[str]:
+    pass
+
+
+logs: list of event strings
+
+maximumTime: integer threshold
+
+return: list of user IDs (strings) whose sessions are ≤ maximumTime, sorted numerically
+
+🔵 Example 1
+Input
+logs = [
+    "30 12 sign-in",
+    "30 25 sign-out",
+    "100 4 sign-in",
+    "20 15 sign-in",
+    "100 20 sign-out",
+    "20 35 sign-out"
+]
+maximumTime = 20
+
+Output
+["20", "30", "100"]
+
+Explanation
+
+Sorted by timestamp, the events become:
+
+time	user	action
+4	100	sign-in
+12	30	sign-in
+15	20	sign-in
+20	100	sign-out
+25	30	sign-out
+35	20	sign-out
+
+Sessions:
+
+User 100: 20 − 4 = 16 ≤ 20 → valid
+
+User 30: 25 − 12 = 13 ≤ 20 → valid
+
+User 20: 35 − 15 = 20 ≤ 20 → valid
+
+Return users sorted: ["20", "30", "100"]
