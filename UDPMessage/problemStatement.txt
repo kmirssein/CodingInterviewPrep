@@ -1,0 +1,83 @@
+UDP Message Practice Problems
+
+Question 1 – Single UDP Message
+Problem:
+You are given an IP address, a message ID, and a payload. We want to send a UDP message using a function send_udp_message(ip_address, message_id, payload).
+Instead of actually sending the message, print the string that would be sent.
+
+Output format:
+<ip_address>: <messageId><payload>
+
+Example:
+Input:
+192.168.1.3
+17
+PING
+Output:
+192.168.1.3: 17PING
+
+-----------------------------------------
+
+Question 2 – Cyclic UDP Message
+Problem:
+Send the same UDP message repeatedly for a fixed duration at a given cycle time.
+Number of cycles = durationMs // cycleTimeMs
+Print one message per cycle.
+
+Example:
+Input:
+10.0.0.5
+100
+ABC
+2000
+5500
+Output:
+10.0.0.5: 100ABC
+10.0.0.5: 100ABC
+
+-----------------------------------------
+
+Question 3 – Multiple Messages with Varying Payloads
+Problem:
+Given an IP, message ID, and a list of payloads, print one UDP message per payload.
+
+Example:
+Input:
+172.16.0.1
+99
+3
+HELLO
+WORLD
+TEST123
+
+Output:
+172.16.0.1: 99HELLO
+172.16.0.1: 99WORLD
+172.16.0.1: 99TEST123
+
+-----------------------------------------
+
+Question 4 – Cyclic Messages with Different Payloads (Bonus)
+Problem:
+Each payload has its own cycle time. All share the same duration.
+For each payload_i with cycleTime_i:
+cycles = durationMs // cycleTime_i
+Print that many messages.
+
+Example:
+Input:
+192.168.0.10
+7
+5000
+2
+PING 1000
+PONG 2000
+
+Output:
+192.168.0.10: 7PING
+192.168.0.10: 7PING
+192.168.0.10: 7PING
+192.168.0.10: 7PING
+192.168.0.10: 7PING
+192.168.0.10: 7PONG
+192.168.0.10: 7PONG
