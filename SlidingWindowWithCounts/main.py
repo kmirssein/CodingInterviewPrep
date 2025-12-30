@@ -45,7 +45,7 @@ def longest_single_char_substring(s: str) -> int:
                 # the line above means if the count (value) of the character
                 # (key) left_ch in the dict is 0, then remove it in the line
                 # below.
-                del count[left]
+                del count[left_ch]
 
             left += 1
 
