@@ -2,6 +2,10 @@
 
 
 def lengthOfLongestSubstringKDistinct(s: str, k: int) -> int:
+    """
+    Return the length of the longest substring that contains
+    at most k distinct characters.
+    """
     if k == 0 or not s:
         return 0
 
