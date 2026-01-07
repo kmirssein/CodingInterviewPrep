@@ -1,3 +1,5 @@
+from xml.sax import default_parser_list
+
 
 class UDPMessage:
     def __init__(self, ip, msg_id, payload):
@@ -93,5 +95,91 @@ def send_udp_message_multi_payload_cycles(msg_class, ip, msg_id,
         for _ in range(num_cycles):
             print(udp_connect.send_udp_message())
 
-send_udp_message_multi_payload_cycles(UDPMessage, "127.0.0.1", "0x123", 10000,
-                                      payload_cycles)
+#send_udp_message_multi_payload_cycles(UDPMessage, "127.0.0.1", "0x123", 10000,
+#                                      payload_cycles)
+
+
+
+from typing import List
+
+logs = [
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PONG",
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PONG",
+]
+
+'''
+Question: Owner-Driven Mode (Interview Style)
+Problem: UDP Message Deduplication + Ordering (Tooling / SDET-style)
+
+This is very realistic for Tesla / Rivian tooling roles.
+
+Scenario
+
+You are receiving formatted UDP messages (strings) from logs.
+Each message represents something that would have been sent.
+
+Example messages:
+
+127.0.0.1: 123PING
+127.0.0.1: 123PING
+127.0.0.1: 123PONG
+127.0.0.1: 123PING
+127.0.0.1: 123PONG
+
+Task
+
+Write a function that:
+
+Deduplicates messages
+
+Preserves first-seen order
+
+Returns the result as a list of strings
+
+Expected behavior
+
+Input:
+
+[
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PONG",
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PONG",
+]
+
+
+Output:
+
+[
+    "127.0.0.1: 123PING",
+    "127.0.0.1: 123PONG",
+]
+
+Constraints (important)
+
+Do not sort
+
+Do not use external libraries
+
+Preserve first appearance order
+
+O(n) time expected
+'''
+def deduplicate_messages(udp_messages: List[str]) -> List[str]:
+    """Return messages with duplicates removed, preserving original order."""
+    seen = set()
+    result = []
+
+    for message in udp_messages:
+        if message not in seen:
+            seen.add(message)
+            result.append(message)
+
+    return result
+
+msgs = deduplicate_messages(logs)
+print(msgs)
